@@ -44,6 +44,9 @@
       removeTask(index) {
         this.sequence.tasks.splice(index, 1)
       },
+      remove(index) {
+        this.sequences.splice(index, 1)
+      },
       async edit(id) {
         this.sequence = await Agent.download(id).then(r => r.json())
       },
