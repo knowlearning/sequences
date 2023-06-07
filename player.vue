@@ -10,20 +10,33 @@
         @click="index = i"
       >
         <span
-        :class="{ selected: i === index, 'task-number': true }"
+          :class="{ selected: i === index, 'task-number': true }"
         >
           {{ i + 1 }}
         </span>
-        <span v-if="i < tasks.length - 1">
+        <span>
           &rarr;
         </span>
       </span>
+      <span
+        :class="{ selected: tasks.length === index, 'task-number': true }"
+        @click="index = tasks.length"
+      >
+        {{ tasks.length + 1 }}
+      </span>
     </div>
     <div class="content-wrapper">
-      <div class="iframe-wrapper">
+      <div
+        class="iframe-wrapper"
+      >
         <content
+          v-if="index < tasks.length"
           :key="index"
           :id="tasks[index]"
+        />
+        <SequenceDashboard
+          v-else
+          :scopes="this.tasks.map(this.idToScope)"
         />
       </div>
       <div
@@ -41,12 +54,14 @@
 </template>
 
 <script>
-  import { validate as isUUID } from 'uuid'
+  import idToScope from './id-to-scope.js'
   import RunStateViewer from './run-state-viewer.vue'
+  import SequenceDashboard from './sequence-dashboard.vue'
 
   export default {
     components: {
-      RunStateViewer
+      RunStateViewer,
+      SequenceDashboard
     },
     props: {
       tasks: Array
@@ -57,20 +72,13 @@
         showRunState: false
       }
     },
+    methods: {
+      idToScope
+    },
     computed: {
       activeScope() {
-        const contentReference = this.tasks[this.index]
-        if (isUUID(contentReference)) return contentReference
-        else {
-          try {
-            const { host, pathname } = new URL(contentReference)
-            if (isUUID(pathname.slice(1))) return pathname.slice(1)
-            else return host
-          }
-          catch (error) {
-            return null
-          }
-        }
+        if (this.index >= this.tasks.length) return null
+        return idToScope(this.tasks[this.index])
       }
     }
   }
