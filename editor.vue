@@ -18,6 +18,7 @@
     <ul>
       <li v-for="id, index in sequences">
         {{ id }}
+        <button @click="view(id)">view</button>
         <button @click="edit(id)">edit</button>
         <button @click="remove(index)">x</button>
       </li>
@@ -60,6 +61,9 @@
       },
       createNew() {
         this.sequence = defaultSequence()
+      },
+      view(id) {
+        window.location.href = `/${id}`
       }
     }
   }
