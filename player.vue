@@ -1,6 +1,9 @@
 <template>
   <div class="parent-wrapper">
-    <div class="header">
+    <div
+      class="header"
+      @click.shift="showRunState = !showRunState"
+    >
       <span
         v-for="_, i in tasks"
         :key="i"
@@ -9,7 +12,7 @@
         <span
         :class="{ selected: i === index, 'task-number': true }"
         >
-          {{ i }}
+          {{ i + 1 }}
         </span>
         <span v-if="i < tasks.length - 1">
           &rarr;
@@ -17,22 +20,57 @@
       </span>
     </div>
     <div class="content-wrapper">
-      <content
-        :key="index"
-        :id="tasks[index]"
-      />
+      <div class="iframe-wrapper">
+        <content
+          :key="index"
+          :id="tasks[index]"
+        />
+      </div>
+      <div
+        v-if="showRunState && activeScope"
+        class="data-wrapper"
+      >
+        <RunStateViewer
+          :key="activeScope"
+          :scope="activeScope"
+        />
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
+  import { validate as isUUID } from 'uuid'
+  import RunStateViewer from './run-state-viewer.vue'
+
   export default {
+    components: {
+      RunStateViewer
+    },
     props: {
       tasks: Array
     },
     data() {
       return {
-        index: 0
+        index: 0,
+        showRunState: false
+      }
+    },
+    computed: {
+      activeScope() {
+        const contentReference = this.tasks[this.index]
+        if (isUUID(contentReference)) return contentReference
+        else {
+          try {
+            const { host, pathname } = new URL(contentReference)
+            if (isUUID(pathname.slice(1))) return pathname.slice(1)
+            else return host
+          }
+          catch (error) {
+            return null
+          }
+        }
       }
     }
   }
@@ -74,12 +112,26 @@
 
   .content-wrapper {
     flex-grow: 1;
+    display: flex;
+  }
+
+  .iframe-wrapper {
+    flex-grow: 1;
     position: relative;
   }
 
   iframe
   {
     display: block;
+  }
+
+  .data-wrapper
+  {
+    background: #FDF6E3;
+    position: relative;
+    width: 33vw;
+    height: 100%;
+    border-left: 1px solid #888888;
   }
 
 </style>
