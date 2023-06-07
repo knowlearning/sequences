@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@knowlearning/agents':
-    specifier: ^0.3.8
-    version: 0.3.8
+    specifier: ^0.3.13
+    version: 0.3.13
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -729,8 +729,8 @@ packages:
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
 
-  /@knowlearning/agents@0.3.8:
-    resolution: {integrity: sha512-whdB9jSs4VjT80rBNOGEPzn5fhYaA/I6/j9bJvgPzBIiTza+OVOhVfDB4VlEs8ki2BrHW6fyqgKFbYh+kqlI6A==}
+  /@knowlearning/agents@0.3.13:
+    resolution: {integrity: sha512-8CKLuy/Zo3ewWIqRbIhObgyCFpeFFJxLCTuazKdHX5u4eMdYzIYE3Ckt6XbWzsvfObJO5KlqMXLv1rWzrEZ0sw==}
     dependencies:
       fast-json-patch: 3.1.1
       firebase: 9.22.1
