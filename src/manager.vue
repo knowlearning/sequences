@@ -1,6 +1,7 @@
 <script setup>
   import { ref, reactive, computed } from 'vue'
   import { vueEmbedComponent } from '@knowlearning/agents/vue.js'
+  import Editor from './editor.vue'
   import Button from './button.vue'
 
   const content = reactive(await Agent.state('content'))
@@ -115,13 +116,11 @@
       </div>
     </div>
     <div id="content">
-      <div
+      <Editor
         v-if="activeContent"
         :key="activeContent"
         :uuid="activeContent"
-      >
-        {{ activeContent }}
-      </div>
+      />
     </div>
   </div>
   <div

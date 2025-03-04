@@ -24,21 +24,27 @@ importers:
         specifier: ^3.0.8
         version: 3.0.8(@fortawesome/fontawesome-svg-core@6.7.2)(vue@3.5.13)
       '@knowlearning/agents':
-        specifier: ^0.9.167
-        version: 0.9.167
+        specifier: ^0.9.169
+        version: 0.9.169
       '@vitejs/plugin-basic-ssl':
         specifier: ^1.2.0
-        version: 1.2.0(vite@6.1.1)
+        version: 1.2.0(vite@6.1.1(yaml@2.7.0))
+      fast-json-patch:
+        specifier: ^3.1.1
+        version: 3.1.1
       vue:
         specifier: ^3.5.13
         version: 3.5.13
+      yaml:
+        specifier: ^2.7.0
+        version: 2.7.0
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
-        version: 5.2.1(vite@6.1.1)(vue@3.5.13)
+        version: 5.2.1(vite@6.1.1(yaml@2.7.0))(vue@3.5.13)
       vite:
         specifier: ^6.0.5
-        version: 6.1.1
+        version: 6.1.1(yaml@2.7.0)
 
 packages:
 
@@ -238,8 +244,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
-  '@knowlearning/agents@0.9.167':
-    resolution: {integrity: sha512-A/jYe6ItVVKsxfwhWiyH/X8h1NOsZE0oacmbI8m23encjnqQNtODWc9UqRqD26D5y9Sy1Nz7nd6heGA0GfOjGg==}
+  '@knowlearning/agents@0.9.169':
+    resolution: {integrity: sha512-VmcdFQ2wUqeM06wAOfYq98uKOI+Qe+nGM4n3mn0oCX2OVYAshwB+ZZP9+o5RnheG5YKJdeh6WswLYVO8/vqIRw==}
 
   '@knowlearning/patch-proxy@1.3.4':
     resolution: {integrity: sha512-F1ay1UaPXsEJfTm6IX6NvEvorVXI3qXabQGCDeyDSu9qZmETqubgOYqx6B6wImCxGL9TgrB6ZC4QLF0tJHYwng==}
@@ -367,9 +373,6 @@ packages:
   '@vue/compiler-ssr@3.5.13':
     resolution: {integrity: sha512-wMH6vrYHxQl/IybKJagqbquvxpWCuVYpoUJfCqFZwa/JY1GdATAQ+TgVtgrwwMZ0D07QhA99rs/EAAWfvG6KpA==}
 
-  '@vue/devtools-api@6.6.4':
-    resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
-
   '@vue/reactivity@3.5.13':
     resolution: {integrity: sha512-NaCwtw8o48B9I6L1zl2p41OHo/2Z4wqYGGIK1Khu5T7yxrn+ATOixn/Udn2m+6kZKB/J7cuT9DbWWhRxqixACg==}
 
@@ -486,10 +489,10 @@ packages:
       typescript:
         optional: true
 
-  vuex@4.1.0:
-    resolution: {integrity: sha512-hmV6UerDrPcgbSy9ORAtNXDr9M4wlNP4pEFKye4ujJF8oqgFFuxDCdOLS3eNoRTtq5O3hoBDh9Doj1bQMYHRbQ==}
-    peerDependencies:
-      vue: ^3.2.0
+  yaml@2.7.0:
+    resolution: {integrity: sha512-+hSoy/QHluxmC9kCIJyL/uyFmLmc+e5CFR5Wa+bpIhIj85LVb9ZH2nVnqrHoSvKogwODv0ClqZkmiSSaIH5LTA==}
+    engines: {node: '>= 14'}
+    hasBin: true
 
 snapshots:
 
@@ -606,15 +609,11 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
-  '@knowlearning/agents@0.9.167':
+  '@knowlearning/agents@0.9.169':
     dependencies:
       '@knowlearning/patch-proxy': 1.3.4
       fast-json-patch: 3.1.1
       uuid: 8.3.2
-      vue: 3.5.13
-      vuex: 4.1.0(vue@3.5.13)
-    transitivePeerDependencies:
-      - typescript
 
   '@knowlearning/patch-proxy@1.3.4': {}
 
@@ -677,13 +676,13 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@vitejs/plugin-basic-ssl@1.2.0(vite@6.1.1)':
+  '@vitejs/plugin-basic-ssl@1.2.0(vite@6.1.1(yaml@2.7.0))':
     dependencies:
-      vite: 6.1.1
+      vite: 6.1.1(yaml@2.7.0)
 
-  '@vitejs/plugin-vue@5.2.1(vite@6.1.1)(vue@3.5.13)':
+  '@vitejs/plugin-vue@5.2.1(vite@6.1.1(yaml@2.7.0))(vue@3.5.13)':
     dependencies:
-      vite: 6.1.1
+      vite: 6.1.1(yaml@2.7.0)
       vue: 3.5.13
 
   '@vue/compiler-core@3.5.13':
@@ -715,8 +714,6 @@ snapshots:
     dependencies:
       '@vue/compiler-dom': 3.5.13
       '@vue/shared': 3.5.13
-
-  '@vue/devtools-api@6.6.4': {}
 
   '@vue/reactivity@3.5.13':
     dependencies:
@@ -824,13 +821,14 @@ snapshots:
 
   uuid@8.3.2: {}
 
-  vite@6.1.1:
+  vite@6.1.1(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.5.3
       rollup: 4.34.8
     optionalDependencies:
       fsevents: 2.3.3
+      yaml: 2.7.0
 
   vue@3.5.13:
     dependencies:
@@ -840,7 +838,4 @@ snapshots:
       '@vue/server-renderer': 3.5.13(vue@3.5.13)
       '@vue/shared': 3.5.13
 
-  vuex@4.1.0(vue@3.5.13):
-    dependencies:
-      '@vue/devtools-api': 6.6.4
-      vue: 3.5.13
+  yaml@2.7.0: {}
